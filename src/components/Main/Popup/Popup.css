@@ -1,0 +1,43 @@
+.popup{
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position:fixed;
+    inset: 0;
+    background: rgba(0,0,0,.8);
+    justify-content: center;
+    align-items: center;
+}
+.popup__block{
+    align-items: center;
+    justify-content: center;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    width:30vw;
+    height: auto;
+    padding:30px;
+}
+.popup__open {
+  display: flex;
+  z-index: 1;
+}
+.popup__close{
+    margin: 0;
+    position: absolute;
+    top: 10vw;
+    right: 30vw;
+    background: none;
+    border: none;
+    font-size: 60px;
+    color: ghostwhite;
+    cursor: pointer;
+    z-index: 99999;
+}
+
+.popup__title{
+    font-family: "inter", Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 100%;
+    color: black;
+}

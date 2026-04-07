@@ -49,7 +49,7 @@ function Main(){
           </section>
           <section className="profile">
               <div className="profile__image"><div className="edit-icon">&#9998</div></div>
-              <h2 className="profile__name"></h2>
+              <h2 className="profile__name">Jaques Cousteau</h2>
               <button type="button" className="profile__button-edit">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black">
                       <rect x="2" y="2" width="20" height="20" rx="3" stroke="black" strokeWidth="2" fill="none"/>
@@ -57,7 +57,7 @@ function Main(){
                               3.75 3.75 1.83-1.83z"/>
                   </svg>
               </button>
-              <h3 className="profile__ocupation"></h3>
+              <h3 className="profile__ocupation">Explorador</h3>
               <button type="button" className="profile__button-add" onClick={()=> handleOpenPopup(newCardPopup)}>+</button>
           </section>
           <section className="element" id="element">
@@ -65,17 +65,7 @@ function Main(){
                   <button className="image-window__button-close popup__close">&times;</button>
                   <img className="image-window__image" src="#" alt="#"/>
               </div>
-              <template className="template-element">
-                  <div className="element__card">
-                      <button className="element__card-trash" type="button"></button>
-                      <img className="element__card-image" src="#" alt="#"/>                  
-                      <div className="element__card-info">
-                          <p className="element__card-text"></p>
-                          <button className="element__card-heart" type="button"></button>
-                      </div>
-                  </div>
-              </template>
-               <ul className="cards__list">
+               <ul className="element">
                     {cards.map((card) => (
                     <Card key={card._id} card={card} />
                     ))}

@@ -1,19 +1,19 @@
 export default function Card(props) {
   const { name, link, isLiked } = props.card;
   return (
-    <li className="card">
-      <img className="card__image" src="#" alt="" />
+    <li className="element__card">
+      <img className="element__card-image" src={link} alt={name} />
       <button
         aria-label="Delete card"
-        className="card__delete-button"
+        className="element__card-trash"
         type="button"
       />
-      <div className="card__description">
-        <h2 className="card__title"></h2>
+      <div className="element__card-info">
+        <h2 className="element__card-text">{name}</h2>
         <button
           aria-label="Like card"
           type="button"
-          className="card__like-button"
+          className="element__card-heart"
         />
       </div>
     </li>
