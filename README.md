@@ -1,3 +1,37 @@
+# Web Project Around React
+
+Aplicación web desarrollada con React + Vite, enfocada en la gestión y visualización de contenido dinámico (cards, perfil de usuario y popups interactivos).
+
+# Descripción del proyecto
+
+Este proyecto consiste en una interfaz interactiva donde el usuario puede:
+
+* Visualizar información de perfil
+* Renderizar tarjetas dinámicamente
+* Interactuar con elementos (abrir popups, editar contenido)
+* Manejar eventos en React correctamente
+
+El objetivo principal fue entender el flujo de renderizado en React y cómo preparar una app para producción.
+
+## Tecnologías utilizadas
+* React
+* Vite
+* CSS (BEM methodology)
+* Git & GitHub
+* GitHub Pages (deploy)
+
+## Instalación y uso
+# Clonar repositorio
+git clone https://github.com/tu-usuario/web_project_around_react.git
+
+# Entrar al proyecto
+cd web_project_around_react
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
+npm run dev
 
 # React + Vite
 
