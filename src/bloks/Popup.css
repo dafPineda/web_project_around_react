@@ -1,5 +1,6 @@
 .popup{
-    display: none;
+    visibility: hidden;
+    display: flex;
     width: 100%;
     height: 100vh;
     position:fixed;
@@ -9,35 +10,32 @@
     align-items: center;
 }
 .popup__block{
+    position: relative;
     align-items: center;
     justify-content: center;
     background-color: ghostwhite;
     border-radius: 10px;
-    width:30vw;
-    height: auto;
+    width:50vw;
     padding:30px;
 }
 .popup__open {
-  display: flex;
+  visibility: visible;
   z-index: 1;
 }
 .popup__close{
-    margin: 0;
     position: absolute;
-    top: 10vw;
-    right: 30vw;
+    top: -25px;
+    right: -35px;
     background: none;
     border: none;
-    font-size: 60px;
-    color: ghostwhite;
     cursor: pointer;
     z-index: 99999;
+    background-image: url(../images/Close\ Icon.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 35px;
 }
 
-.popup__title{
-    font-family: "inter", Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 100%;
-    color: black;
+.popup__close:hover {
+    opacity: 0.6;
 }

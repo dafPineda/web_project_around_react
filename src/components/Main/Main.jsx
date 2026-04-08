@@ -1,9 +1,10 @@
 import { useState } from "react";
-import EditProfile from "./Forms/EditProfile/EditProfile";
-import NewCard from "./Forms/NewCard/NewCard";
-import EditAvatar from "./Forms/EditAvatar/EditAvatar";
-import Popup from "./Popup/Popup";
+import EditProfile from "./components/Forms/EditProfile/EditProfile";
+import NewCard from "./components/Forms/NewCard/NewCard";
+import EditAvatar from "./components/Forms/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card";
+import RemoveCard from "./components/RemoveCard/RemoveCard";
+import Popup from "./components/Popup/Popup";
 
 const cards = [
   {
@@ -26,7 +27,7 @@ const cards = [
 
 function Main(){
     const [popup, setPopup] = useState(null)
-    const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
+    const newCardPopup = {title: "Nuevo lugar", children: <NewCard/>};
     const editProfilePopup = {title: "Editar perfil", children: <EditProfile/>}
     const EditAvatarPopup = {title:"Editar foto de peril", children:<EditAvatar/>}
 
@@ -39,16 +40,9 @@ function Main(){
     return(
         <div className="main">
           <section className="forms">              
-              <form className="popup form__confirmation" id="confirmation__form" name="formConfirmation" noValidate>
-                  <button type="button" className="popup__close form__close">&times;</button>
-                  <div className="confirmation-block">
-                      <p className="form__title">¿Deseas eliminar este elemento? Esta acción no se puede deshacer.</p>
-                      <button type="submit" className="form__button">Confirmar</button>
-                  </div>
-              </form>
           </section>
           <section className="profile">
-              <div className="profile__image"><div className="edit-icon">&#9998</div></div>
+              <div className="profile__image"><div className="edit-icon"/></div>
               <h2 className="profile__name">Jaques Cousteau</h2>
               <button type="button" className="profile__button-edit">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black">
@@ -61,10 +55,6 @@ function Main(){
               <button type="button" className="profile__button-add" onClick={()=> handleOpenPopup(newCardPopup)}>+</button>
           </section>
           <section className="element" id="element">
-              <div className="popup image-window">
-                  <button className="image-window__button-close popup__close">&times;</button>
-                  <img className="image-window__image" src="#" alt="#"/>
-              </div>
                <ul className="element">
                     {cards.map((card) => (
                     <Card key={card._id} card={card} />
@@ -72,8 +62,8 @@ function Main(){
                 </ul>
           </section>
           {popup && (
-                <Popup onClose={handleClosePopup} title={popup.title}>
-                {popup.children}
+                <Popup onClose={handleClosePopup} title={popup.title} isOpen={!!popup}>
+                    {popup.children}
                 </Popup>
             )} 
         </div>

@@ -1,8 +1,6 @@
 export default function NewCard() {
   return (
-   <form className="popup form__container" id="new-element__form" name="formAdd" noValidate>
-        <button type="button" className="form__close popup__close" id="formsCloseAdd">&times;</button>
-        <div className="form__block">
+   <form className="forms " id="new-element__form" name="formAdd" noValidate>
             <h2 className="form__title">Nueva foto</h2>
             <fieldset className="form__fieldset">
                 <input 
@@ -29,7 +27,6 @@ export default function NewCard() {
                 Guardar
                 </button>
             </fieldset>
-        </div>
     </form>
   );
 }

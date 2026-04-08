@@ -1,4 +1,6 @@
-
+.form{
+    margin:5px;
+}
 .form__fieldset{
     margin: 0;
     padding:0;
@@ -6,6 +8,13 @@
     flex-direction: column;
     border: none;
     gap:15px;
+}
+.form__title{
+    font-family: "inter", Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 100%;
+    color: black;
 }
 .form__input{
     background-color: transparent;        
@@ -60,9 +69,6 @@
         width: auto;
         max-width: 70vw;
         padding: 30px 30px;
-    }
-    .form__close{
-        right: -40px;
     }
     .form__button{
         width: 50vw;
