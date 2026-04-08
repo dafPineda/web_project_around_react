@@ -1,9 +1,7 @@
 function EditAvatar(){
     return(
-        <form className="popup" id="editPhotoProfile" name="editPhotoProfile">
-            <button type="button" className="popup__close">&times;</button>
-            <div className="popup__block">
-                <p className="popup__title">Link de la nueva foto</p>
+        <form className="form" id="editPhotoProfile" name="editPhotoProfile">
+            <fieldset className="form__fieldset">
                 <input 
                     id="photo-link"
                     className="form__input"
@@ -13,7 +11,7 @@ function EditAvatar(){
                     required
                     />
                 <button type="submit" className="form__button">Guardar</button>
-            </div>  
+            </fieldset>  
         </form>
     )
 }

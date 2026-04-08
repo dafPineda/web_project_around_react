@@ -39,3 +39,17 @@
 .popup__close:hover {
     opacity: 0.6;
 }
+
+.popup__content_content_image{
+    margin: 0;
+    padding: 0;
+    width: auto;
+    background: none;
+    border-radius: 0;
+}
+
+.popup__image {
+    display: flex;
+    max-width: 75vw;
+    max-height: 75vh;
+}

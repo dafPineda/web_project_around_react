@@ -1,7 +1,6 @@
 export default function NewCard() {
   return (
    <form className="forms " id="new-element__form" name="formAdd" noValidate>
-            <h2 className="form__title">Nueva foto</h2>
             <fieldset className="form__fieldset">
                 <input 
                 id="new-element__input-name"
