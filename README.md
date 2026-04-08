@@ -1,3 +1,5 @@
+# Deploy
+* https://dafpineda.github.io/web_project_around_react/
 # Web Project Around React
 
 Aplicación web desarrollada con React + Vite, enfocada en la gestión y visualización de contenido dinámico (cards, perfil de usuario y popups interactivos).
