@@ -45,6 +45,12 @@ function Main({cards, setCards, api}){
         })
         .catch((error) => console.error(error));
     }
+    async function handleCardDelete(cardDelete){
+        await api.deleteCard(cardDelete._id)
+        .then(()=>{
+            setCards(cards.filter(card => card._id !== cardDelete._id))
+        })
+    }
 
     return(
         <div className="main">
@@ -67,7 +73,7 @@ function Main({cards, setCards, api}){
           <section className="element" id="element">
                <ul className="element">
                     {cards.map((card) => (
-                    <Card key={card._id} card={card} onDeleteClick={handleOpenRemovePopup} onImageClick={handleOpenImagePopup} onCardLike={handleCardLike}/>
+                    <Card key={card._id} card={card} onDeleteClick={handleCardDelete} onImageClick={handleOpenImagePopup} onCardLike={handleCardLike}/>
                     ))}
                 </ul>
           </section>
