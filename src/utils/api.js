@@ -15,6 +15,10 @@ export default class Api{
       this.getInitialCards()
     ])
   }
+  changeLikeCardStatus(id, isLiked){
+    if(isLiked) return this.like(id)
+    else  return this.dislike(id)
+  }
 
   getInitialCards(){
     return fetch(`${this.baseUrl}/cards/`, {

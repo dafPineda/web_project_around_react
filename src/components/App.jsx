@@ -20,7 +20,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <Header/>
-      <Main cards={cards} setCards={setCards}/>
+      <Main cards={cards} setCards={setCards} api={api}/>
       <Footer/>  
     </div>
 

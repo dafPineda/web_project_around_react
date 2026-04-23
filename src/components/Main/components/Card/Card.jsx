@@ -1,5 +1,5 @@
 export default function Card(props) {
-  const {card, onDeleteClick, onImageClick} = props
+  const {card, onDeleteClick, onImageClick, onCardLike} = props
   const { name, link, isLiked} = card;
   return (
     <li className="element__card">
@@ -16,6 +16,7 @@ export default function Card(props) {
           aria-label="Like card"
           type="button"
           className={`element__card-heart ${isLiked ? "element__card-heart_active" : "" }`}
+          onClick={()=> onCardLike(card)}
         />
       </div>
     </li>

@@ -9,13 +9,14 @@ import ImagePopup from "./components/ImagePopup/ImagePopup";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Main({cards, setCards}){
+function Main({cards, setCards, api}){
     const currentUser = useContext(CurrentUserContext)
     const [popup, setPopup] = useState(null)
     const [selectedCard, setSelectedCard] = useState(null)
     const newCardPopup = {title: "Nuevo lugar", children: <NewCard/>};
     const editProfilePopup = {title: "Editar perfil", children: <EditProfile/>}
     const editAvatarPopup = {title:"Editar avatar", children:<EditAvatar/>}
+
     function handleOpenPopup(popup){
         setPopup(popup)
     }
@@ -34,6 +35,15 @@ function Main({cards, setCards}){
             title:"",
             children:<ImagePopup card={card}/>
         })
+    }
+    async function handleCardLike(card) {
+        const isLiked = card.isLiked;
+
+        await api.changeLikeCardStatus(card._id, !isLiked)
+        .then((newCard) => {
+            setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+        })
+        .catch((error) => console.error(error));
     }
 
     return(
@@ -57,7 +67,7 @@ function Main({cards, setCards}){
           <section className="element" id="element">
                <ul className="element">
                     {cards.map((card) => (
-                    <Card key={card._id} card={card} onDeleteClick={handleOpenRemovePopup} onImageClick={handleOpenImagePopup}/>
+                    <Card key={card._id} card={card} onDeleteClick={handleOpenRemovePopup} onImageClick={handleOpenImagePopup} onCardLike={handleCardLike}/>
                     ))}
                 </ul>
           </section>
