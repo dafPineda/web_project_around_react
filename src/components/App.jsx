@@ -10,6 +10,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = useState([])
   const [popup, setPopup] = useState(null)
+
   useEffect(()=>{
     api.getAppInfo()
     .then(([userData, cardsData])=>{
@@ -18,6 +19,29 @@ function App() {
     })
   },[])
 
+  async function handleCardLike(card) {
+    const isLiked = card.isLiked;
+
+    await api.changeLikeCardStatus(card._id, !isLiked)
+    .then((newCard) => {
+      setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+    })
+    .catch((error) => console.error(error));
+  }
+  async function handleCardDelete(cardDelete){
+      await api.deleteCard(cardDelete._id)
+      .then(()=>{
+          setCards(cards.filter(card => card._id !== cardDelete._id))
+      })
+  }
+  async function handleAddPlaceSubmit(data){
+    await api.addCard(data)
+    .then((newCard) => {
+        setCards([newCard, ...cards])
+        handleClosePopup()
+    })
+    .catch((error) => console.error(error))
+  }
   function handleOpenPopup(popup){
       setPopup(popup)
   }
@@ -48,10 +72,11 @@ function App() {
         onOpenPopup={handleOpenPopup}
         onClosePopup={handleClosePopup}
         popup={popup}
-        setPopup={setPopup}
         cards={cards} 
-        setCards={setCards} 
-        api={api}/>
+        setPopup={setPopup}
+        onCardClick={handleCardLike}
+        onCardDelete={handleCardDelete}
+        onAddPlaceSubmit={handleAddPlaceSubmit}/>
       <Footer/>  
     </div>
 
