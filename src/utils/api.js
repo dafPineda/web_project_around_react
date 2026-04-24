@@ -34,7 +34,7 @@ export default class Api{
     .then(res=> this._checkError(res))
     .catch((err) => console.log(err))
   }
-  editUserInfo(data){
+  setUserInfo(data){
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this.headers,
@@ -46,7 +46,7 @@ export default class Api{
     .then(res=> this._checkError(res))
     .catch((err) => console.log(err))
   }
-  editUserPhoto(link){
+  setUserAvatar(link){
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,

@@ -9,20 +9,14 @@ import ImagePopup from "./components/ImagePopup/ImagePopup";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Main({cards, setCards, api}){
-    const currentUser = useContext(CurrentUserContext)
-    const [popup, setPopup] = useState(null)
+function Main({onOpenPopup, onClosePopup, popup, setPopup, cards, setCards, api}){
+    const userContext = useContext(CurrentUserContext)
+    const currentUser = userContext.currentUser
     const [selectedCard, setSelectedCard] = useState(null)
     const newCardPopup = {title: "Nuevo lugar", children: <NewCard/>};
     const editProfilePopup = {title: "Editar perfil", children: <EditProfile/>}
     const editAvatarPopup = {title:"Editar avatar", children:<EditAvatar/>}
 
-    function handleOpenPopup(popup){
-        setPopup(popup)
-    }
-    function handleClosePopup() {
-        setPopup(null);
-    }
     function handleOpenRemovePopup(card) {
         setSelectedCard(card);
         setPopup({
@@ -57,9 +51,14 @@ function Main({cards, setCards, api}){
           <section className="forms">              
           </section>
           <section className="profile">
-              <div className="profile__image" onClick={()=>{handleOpenPopup(editAvatarPopup)}}><div className="edit-icon"/></div>
+              <div className="profile__image" 
+                onClick={()=>{onOpenPopup(editAvatarPopup)}}
+                style={{backgroundImage:`url(${currentUser.avatar})`}}
+                >
+                    <div className="edit-icon"/>
+              </div>
               <h2 className="profile__name">{currentUser.name}</h2>
-              <button type="button" className="profile__button-edit" onClick={()=>{handleOpenPopup(editProfilePopup)}} 
+              <button type="button" className="profile__button-edit" onClick={()=>{onOpenPopup(editProfilePopup)}} 
                     style={{backgroundImage:`url(${currentUser.avatar})`}}>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black">
                       <rect x="2" y="2" width="20" height="20" rx="3" stroke="black" strokeWidth="2" fill="none"/>
@@ -68,7 +67,7 @@ function Main({cards, setCards, api}){
                   </svg>
               </button>
               <h3 className="profile__ocupation">{currentUser.about}</h3>
-              <button type="button" className="profile__button-add" onClick={()=> handleOpenPopup(newCardPopup)}>+</button>
+              <button type="button" className="profile__button-add" onClick={()=> onOpenPopup(newCardPopup)}>+</button>
           </section>
           <section className="element" id="element">
                <ul className="element">
@@ -78,7 +77,7 @@ function Main({cards, setCards, api}){
                 </ul>
           </section>
           {popup && (
-                <Popup onClose={handleClosePopup} title={popup.title} isOpen={!!popup}>
+                <Popup onClose={onClosePopup} title={popup.title} isOpen={!!popup}>
                     {popup.children}
                 </Popup>
             )} 

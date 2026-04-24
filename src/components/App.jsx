@@ -9,6 +9,7 @@ const api = new Api("https://around-api.es.tripleten-services.com/v1", {Authoriz
 function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = useState([])
+  const [popup, setPopup] = useState(null)
   useEffect(()=>{
     api.getAppInfo()
     .then(([userData, cardsData])=>{
@@ -16,11 +17,41 @@ function App() {
       setCards(cardsData)
     })
   },[])
+
+  function handleOpenPopup(popup){
+      setPopup(popup)
+  }
+  function handleClosePopup() {
+      setPopup(null);
+  }
+  const handleUpdateUser = (data) => {
+        api.setUserInfo(data)
+        .then((newData) => {
+          setCurrentUser(newData);
+          handleClosePopup();
+        })
+        .catch((error) => console.error(error));
+  };
+   const handleUpdateAvatar = (data) => {
+        api.setUserAvatar(data.avatar)
+       .then((newData) => {
+         setCurrentUser(newData);
+         handleClosePopup();
+       })
+       .catch((error) => console.error(error));
+  };
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{currentUser, handleUpdateUser, handleUpdateAvatar}}>
     <div className="page">
       <Header/>
-      <Main cards={cards} setCards={setCards} api={api}/>
+      <Main 
+        onOpenPopup={handleOpenPopup}
+        onClosePopup={handleClosePopup}
+        popup={popup}
+        setPopup={setPopup}
+        cards={cards} 
+        setCards={setCards} 
+        api={api}/>
       <Footer/>  
     </div>
 
